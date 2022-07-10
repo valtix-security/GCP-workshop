@@ -1,0 +1,34 @@
+#############################################
+# 2a. Service VPC
+#############################################
+resource "valtix_service_vpc" "service_vpc" {
+  name               = "valtix-service-vpc"
+  csp_account_name   = var.valtix_account_name
+  region             = var.region
+  cidr               = "10.10.0.0/24"
+  management_cidr    = "10.10.1.0/24"
+  availability_zones = [var.zone]
+  depends_on = [valtix_cloud_account.gcp_demo]
+}
+
+###################################
+# 2b. Gateway
+###################################
+resource "valtix_policy_rule_set" "egress_rule_set" {
+  name = "egress-policy-ruleset"
+}
+
+resource "valtix_gateway" "gcp-gw1" {
+  name                      = "gcp-gw"
+  description               = "GCP gateway"
+  csp_account_name          = var.valtix_account_name
+  instance_type             = "GCP_E2_8"
+  gateway_image             = "22.06-01"
+  gateway_state             = "ACTIVE"
+  security_type             = "EGRESS"
+  policy_rule_set_id        = valtix_policy_rule_set.egress_rule_set.rule_set_id
+  gcp_service_account_email = var.service_account_email
+  region                    = var.region
+  vpc_id                    = valtix_service_vpc.service_vpc.id
+  mode                      = "HUB"
+}
