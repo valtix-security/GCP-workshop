@@ -1,4 +1,3 @@
-
 #### IPS/IDS Security Profile ####
 resource "valtix_profile_network_intrusion" "balanced_alert" {
   name = "gcp-workshop-balanced-alert"
@@ -42,10 +41,4 @@ resource "valtix_profile_urlfilter" "allow_valtix_github" {
     return_status = 503
   }
 }
-
-
-
-
-
-
 

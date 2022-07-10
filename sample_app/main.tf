@@ -1,6 +1,6 @@
 provider "google" {
-  credentials  = file("./service_account.json")
-  project = "sample-1-12345"
+  credentials  = file("./${var.service_account}")
+  project = var.project_id
   region  = local.region
   zone    = local.zone
 }
@@ -8,7 +8,6 @@ provider "google" {
 locals {
   region = "us-central1"
   zone   = "us-central1-c"
-  home_ip = "1.2.3.4"
 }
 
 resource "google_compute_instance" "vm_instance" {
@@ -50,7 +49,7 @@ resource "google_compute_firewall" "ssh" {
 
 resource "google_compute_route" "allow_home_ip_ssh" {
   name         = "allow-home-ip-ssh-prod"
-  dest_range   = local.home_ip
+  dest_range   = var.execution_server_ip
   network      = google_compute_network.vpc_network.name
   next_hop_gateway = "default-internet-gateway"
 }

@@ -7,3 +7,6 @@ output "instance_public_ip" {
 output "instance_id" {
   value = google_compute_instance.vm_instance.instance_id
 }
+output "sample_app_vpc_name" {
+  value = "valtix-demo-production-network"
+}

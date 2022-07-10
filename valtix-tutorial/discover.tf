@@ -2,7 +2,7 @@
 # 1a. Setup GCP project for Onboarding
 #############################################
 module "csp_setup" {
-  source                    = "../terraform-gcp-setup"
+  source                    = "../../Git/terraform-gcp-setup"
   gcp_credentials_file      = file(var.gcp_key_file)
   prefix                    = var.prefix
   project_id                = var.gcp_project_id
