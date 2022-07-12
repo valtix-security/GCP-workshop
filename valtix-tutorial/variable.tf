@@ -13,5 +13,4 @@ variable "zone" {
 variable "prefix" {
   default = "valtix-gcp-demo"
 }
-variable "service_account_email" {}
 variable "spoke_vpcs" {}
