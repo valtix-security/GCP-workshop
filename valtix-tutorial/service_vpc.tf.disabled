@@ -27,7 +27,7 @@ resource "valtix_gateway" "gcp-gw1" {
   gateway_state             = "ACTIVE"
   security_type             = "EGRESS"
   policy_rule_set_id        = valtix_policy_rule_set.egress_rule_set.rule_set_id
-  gcp_service_account_email = var.service_account_email
+  gcp_service_account_email = module.csp_setup.gateway_account
   region                    = var.region
   vpc_id                    = valtix_service_vpc.service_vpc.id
   mode                      = "HUB"
