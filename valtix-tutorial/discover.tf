@@ -19,4 +19,5 @@ resource "valtix_cloud_account" "gcp_demo" {
     regions          = [var.region]
     refresh_interval = 60
   }
+  depends_on = [module.csp_setup]
 }
