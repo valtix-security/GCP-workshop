@@ -2,12 +2,11 @@
 # 1a. Setup GCP project for Onboarding
 #############################################
 module "csp_setup" {
-  source                    = "../../Git/terraform-gcp-setup"
-  gcp_credentials_file      = file(var.gcp_key_file)
-  prefix                    = var.prefix
-  project_id                = var.gcp_project_id
+  source               = "github.com/valtix-security/terraform-gcp-setup"
+  gcp_credentials_file = file(var.gcp_key_file)
+  prefix               = var.prefix
+  project_id           = var.gcp_project_id
 }
-
 
 #############################################
 # 1b. Onboard GCP Project to Valtix
