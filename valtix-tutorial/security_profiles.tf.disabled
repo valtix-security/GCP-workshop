@@ -24,11 +24,11 @@ resource "valtix_profile_urlfilter" "allow_valtix_github" {
   name = "allow-valtix-security-github"
   description = "allow only valtix-security github"
   url_filter_list {
-    url_list = ["http.*github.com/valtix-security.*"]
+    url_list = ["http.*github.com/valtix-security.*", "http.*githubusercontent.com/valtix-security.*"]
     policy = "Allow Log"
   }
   url_filter_list {
-    url_list = ["http.*github.com/.*"]
+    url_list = ["http.*github.com/.*", "http.*githubusercontent.com/.*"]
     policy = "Deny Log"
     return_status = 502
   }
