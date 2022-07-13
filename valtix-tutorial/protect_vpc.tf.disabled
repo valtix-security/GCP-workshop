@@ -2,6 +2,7 @@
 # 2c. VPC Peering
 ###################################
 data "google_compute_network" "spoke_network" {
+  provider = google
   name = "valtix-demo-production-network"
 }
 
